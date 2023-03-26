@@ -1,0 +1,98 @@
+.nav-item {
+    display: flex;
+    align-items: center;
+    color: white !important;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: white !important;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    /* Grow the link on hover */
+    transform: scale(1.1);
+}
+
+body {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    color: white;
+    padding-top: 70px;
+}
+
+.col {
+    text-align: center;
+}
+
+.col img {
+    width: 60vh;
+    height: 60vh;
+}
+
+aside {
+    width: 30%;
+    padding-left: 15px;
+    margin-left: 15px;
+    float: right;
+    font-style: italic;
+}
+
+.table {
+    color: white;
+}
+
+.modal {
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+/* This never seems to work no matter how much googling I do any recommendation would be appreciated
+https://stackoverflow.com/questions/17683874/how-to-change-the-color-of-a-bootstrap-popover-in-javascript
+*/
+.popover-title{
+    background: #555;
+    color: black;
+}
+
+.icon {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    margin: 10px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.icon:hover {
+    /* Grow the link on hover */
+    transform: scale(1.1);
+}
+
+.table-icon {
+    font-size: 20px;
+    color: white;
+    margin: 5px;
+}
+
+.footer {
+    background: #212529;
+    padding: 25px;
+}
+
+.table-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+#home {
+    height: 100vh;
+}
+
+#teams {
+    height: 80vh;
+}
