@@ -1,4 +1,4 @@
-function Footer() {
+function Footer(props) {
   return (
     <footer className="nav d-flex flex-wrap justify-content-between align-items-center border-top fixed-bottom footer">
       <div
@@ -9,7 +9,7 @@ function Footer() {
       >
         <div className="col-md-4">
           <p className="mb-0">
-            © 2023 ALGS World Championship &amp; Respawn Entertainment
+            © {props.year} ALGS World Championship &amp; Respawn Entertainment
           </p>
         </div>
         <div className="col-md-4 justify-content-end d-flex">

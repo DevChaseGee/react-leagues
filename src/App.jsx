@@ -22,7 +22,7 @@ function App() {
           <HomeTab></HomeTab>
           <TeamTab></TeamTab>
         </div>
-        <Footer></Footer>
+        <Footer year="2050"></Footer>
         <Modal></Modal>
       </>
     </div>

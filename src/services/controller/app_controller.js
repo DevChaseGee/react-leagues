@@ -8,6 +8,9 @@ export default class AppController {
     this.storage = new LocalStorageService(teamData, "teamData");
     this.listView = new ListView(this.storage, { singleEntity: "team" });
 
+    this.listView.initializeSuccessPopup();
+    this.listView.initializePopovers();
+
     this.render();
   }
 

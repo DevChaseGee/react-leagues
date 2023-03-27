@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { Popover } from "bootstrap";
 
 export default class ListView {
   constructor(storage, options = {}) {
@@ -196,6 +197,9 @@ export default class ListView {
             // This is a hack to reset the modal button after it's been clicked
             // it prevents multiple events from being bound to the button
             $("#deleteModalBtn").replaceWith($("#deleteModalBtn").clone());
+            const alertButton = document.getElementById("deleteModalBtn");
+            alertButton.setAttribute("listener", "false");
+            this.initializeSuccessPopup();
           });
       });
     });
@@ -211,5 +215,38 @@ export default class ListView {
       this.storage.reset();
       this.render();
     });
+  }
+
+  initializeSuccessPopup() {
+    const alertPlaceholder = document.getElementById("alertPlaceHolder");
+    const alertButton = document.getElementById("deleteModalBtn");
+
+    const alert = (message, type) => {
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        "</div>",
+      ].join("");
+
+      alertPlaceholder.append(wrapper);
+    };
+
+    if (alertButton.getAttribute("listener") !== "true") {
+      alertButton.addEventListener("click", async () => {
+        alert("Team successfully deleted!", "success");
+      });
+      alertButton.setAttribute("listener", "true");
+    }
+  }
+
+  initializePopovers() {
+    const popoverTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="popover"]'
+    );
+    const popoverList = [...popoverTriggerList].map(
+      (popoverTriggerEl) => new Popover(popoverTriggerEl)
+    );
   }
 }
