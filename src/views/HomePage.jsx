@@ -1,6 +1,6 @@
-function HomeTab() {
+function HomePage() {
   return (
-    <div id="home" className="container tab-pane active">
+    <div id="home" className="container active">
       <div className="row">
         <div className="col text-center my-3">
           <h1>Welcome to the League!</h1>
@@ -22,4 +22,4 @@ function HomeTab() {
   );
 }
 
-export default HomeTab;
+export default HomePage;

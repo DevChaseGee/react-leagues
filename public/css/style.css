@@ -3,11 +3,18 @@
     align-items: center;
     color: white !important;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .nav-link {
     color: white !important;
     text-decoration: none;
+}
+
+.nav-img {
+    margin-right: 30px;
+    width: 50px;
+    height: 50px;
 }
 
 .nav-link:hover {
@@ -19,7 +26,6 @@ body {
     background-image: url(../images/background.jpg);
     background-size: cover;
     color: white;
-    padding-top: 70px;
 }
 
 .col {

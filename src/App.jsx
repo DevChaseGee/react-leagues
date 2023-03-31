@@ -1,29 +1,24 @@
-import { useEffect } from "react";
 import "./App.css";
-import AppController from "./services/controller/app_controller.js";
-import Navbar from "./components/Navbar.jsx";
-import HomeTab from "./components/HomeTab.jsx";
-import TeamTab from "./components/TeamTab.jsx";
-import Footer from "./components/Footer.jsx";
-import Modal from "./components/Modal.jsx";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import HomePage from "./views/HomePage.jsx";
+import TeamsPage from "./views/TeamsPage.jsx";
+import NoMatch from "./views/NoMatch.jsx";
 
 function App() {
-  useEffect(() => {
-    let app = new AppController();
-
-    app.render();
-  });
-
   return (
     <div className="App">
       <>
-        <Navbar></Navbar>
-        <div className="tab-content">
-          <HomeTab></HomeTab>
-          <TeamTab></TeamTab>
-        </div>
-        <Footer year="2050"></Footer>
-        <Modal></Modal>
+        <Routes>
+          <Route
+            path="/"
+            element={<Layout title="ALGS League" logo="images/intro.jpg" />}
+          >
+            <Route index path="/" element={<HomePage />} />
+            <Route path="/teams" element={<TeamsPage />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
       </>
     </div>
   );

@@ -221,6 +221,10 @@ export default class ListView {
     const alertPlaceholder = document.getElementById("alertPlaceHolder");
     const alertButton = document.getElementById("deleteModalBtn");
 
+    if (alertPlaceholder === null || alertButton === null) {
+      return;
+    }
+
     const alert = (message, type) => {
       const wrapper = document.createElement("div");
       wrapper.innerHTML = [
