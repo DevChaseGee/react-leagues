@@ -1,0 +1,145 @@
+@import "index.scss";
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  color: white !important;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white !important;
+  text-decoration: none;
+}
+
+.nav-img {
+  margin-right: 30px;
+  width: 50px;
+  height: 50px;
+}
+
+.nav-link:hover {
+  /* Grow the link on hover */
+  transform: scale(1.1);
+}
+
+body {
+  background-image: url(../public/images/background.jpg);
+  background-size: cover;
+  color: white;
+}
+
+.col {
+  text-align: center;
+}
+
+.col img {
+  width: 60vh;
+  height: 60vh;
+}
+
+aside {
+  width: 30%;
+  padding-left: 15px;
+  margin-left: 15px;
+  float: right;
+  font-style: italic;
+}
+
+.table {
+  color: white;
+}
+
+.modal {
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+/* This never seems to work no matter how much googling I do any recommendation would be appreciated
+https://stackoverflow.com/questions/17683874/how-to-change-the-color-of-a-bootstrap-popover-in-javascript
+*/
+.popover-title{
+  background: #555;
+  color: black;
+}
+
+.icon {
+  display: block;
+  text-align: center;
+  font-size: 40px;
+  margin: 10px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.icon:hover {
+  /* Grow the link on hover */
+  transform: scale(1.1);
+}
+
+.table-icon {
+  font-size: 20px;
+  color: white;
+  margin: 5px;
+}
+
+.footer {
+  background: #212529;
+  padding: 25px;
+}
+
+.table-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+#home {
+  height: 100vh;
+}
+
+#teams {
+  height: 80vh;
+}

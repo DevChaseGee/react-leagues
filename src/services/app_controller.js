@@ -1,6 +1,6 @@
-import LocalStorageService from "../model/local_storage_service.js";
-import teamData from "../model/team_data.js";
-import ListView from "../view/list_view.js";
+import LocalStorageService from "./local_storage_service.js";
+import teamData from "./team_data.js";
+import ListView from "./list_view.js";
 
 export default class AppController {
   constructor() {

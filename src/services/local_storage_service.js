@@ -37,8 +37,21 @@ export default class LocalStorageService {
     // Return's the number of items in model.data
     return this.model.data.length;
   }
-  get list() {
-    // Return's the list of items in model.data
+  get filterStr() {
+    return this.model.app.filterStr;
+  }
+  set filterStr(str) {
+    this.model.app.filterStr = str;
+  }
+
+  list() {
+    this.sort(this.sortCol, this.sortDir, true);
+    let filterObj = {};
+    if (this.filterStr) {
+      filterObj[this.sortCol] = this.filterStr;
+      return this.filter(filterObj);
+    }
+
     return this.model.data;
   }
 

@@ -1,29 +1,22 @@
-import { useEffect } from "react";
-import AppController from "../services/controller/app_controller.js";
-import Modal from "../components/Modal.jsx";
+import LocalStorageService from "../services/local_storage_service.js";
+import TeamsAside from "../components/TeamPage/TeamsAside.jsx";
+import TeamsList from "../components/TeamPage/TeamsList.jsx";
+import AppViewModel from "../services/appViewModel.meta.js";
 
 function TeamsPage() {
-  useEffect(() => {
-    let app = new AppController();
-
-    app.render();
-  });
+  let localStorage = new LocalStorageService(
+    AppViewModel.data,
+    AppViewModel.list.entity
+  );
 
   return (
-    <div id="teams" className="container">
-      <div className="row">
-        <div className="col text-center my-3">
-          <h1>Teams</h1>
+    <div id="team" className="col-12 mh-100">
+      <div className="container-fluid">
+        <div className="row">
+          <TeamsAside />
+          <TeamsList viewModel={AppViewModel} model={localStorage} />
         </div>
       </div>
-      <div className="row">
-        <div id="alertPlaceHolder" />
-        <div id="tableContainer" className="table-responsive" />
-        <button className="btn btn-md btn-primary" id="resetBtn">
-          Reset
-        </button>
-      </div>
-      <Modal />
     </div>
   );
 }
