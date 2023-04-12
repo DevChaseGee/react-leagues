@@ -76,7 +76,6 @@ export default class LocalStorageService {
     // update object with new contents
     // persist in local storage by calling store()
     let index = this.getItemIndex(obj.id);
-    console.log("index in update:" + index);
     this.model.data[index] = obj;
     this.store();
   }

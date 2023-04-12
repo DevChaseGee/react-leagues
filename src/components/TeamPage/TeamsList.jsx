@@ -3,18 +3,28 @@ import SearchBar from "./SearchBar.jsx";
 import TeamsTable from "./TeamsTable.jsx";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import DeleteAlert from "./DeleteAlert.jsx";
 
 function TeamsList({ viewModel, model }) {
   const [filterText, setFilterText] = useState("");
   const [data, updateData] = useState(model.list());
-  // const [alertList, setAlertList] = useState([]);
+  const [show, setShow] = useState(false);
 
   function handleReset() {
     model.reset();
     updateData(model.list());
   }
 
-  function handleDelete() {}
+  function handleDelete(id) {
+    model.delete(id);
+    updateData(model.list());
+    setShow(true);
+  }
+
+  function handleHideAlert() {
+    console.log("I was ran!");
+    setShow(false);
+  }
 
   function handleSort(sortCol) {
     console.log(sortCol + " " + model.sortCol + " " + model.sortDir);
@@ -43,6 +53,11 @@ function TeamsList({ viewModel, model }) {
       <div className="row">
         <div className="col text-center my-3">
           <h1>Teams</h1>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col text-center my-3">
+          {show && <DeleteAlert onHandleHideAlert={handleHideAlert} />}
         </div>
       </div>
       <div className="row">

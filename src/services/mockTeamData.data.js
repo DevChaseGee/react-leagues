@@ -16,6 +16,8 @@ var mockTeamData = {
       coachLicenseLevel: 1,
       league: 1,
       division: 1,
+      motto: "We are the best!",
+      logo: "/images/cloud9_logo.png",
     },
     {
       id: 2,
@@ -27,6 +29,8 @@ var mockTeamData = {
       coachLicenseLevel: 1,
       league: 1,
       division: 2,
+      motto: "We are the best!",
+      logo: "/images/tsm_logo.png",
     },
     {
       id: 3,
@@ -38,6 +42,8 @@ var mockTeamData = {
       coachLicenseLevel: 2,
       league: 1,
       division: 2,
+      motto: "We are the best!",
+      logo: "/images/nrg_logo.jpg",
     },
   ],
 };
