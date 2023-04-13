@@ -1,6 +1,12 @@
 import Button from "react-bootstrap/Button";
 
 function SearchBar({ title, filterText, onFilterTextChange }) {
+
+  function clearText() {
+    document.getElementById("searchInput").value = "";
+    onFilterTextChange("");
+  }
+
   return (
     <div className="col-12 d-flex justify-content-between">
       <h2 className="w-75 text-white">{title}</h2>
@@ -19,7 +25,7 @@ function SearchBar({ title, filterText, onFilterTextChange }) {
           variant="primary"
           id="clearBtn"
           onClick={(e) => {
-            onFilterTextChange("");
+            clearText();
           }}
         >
           Clear
