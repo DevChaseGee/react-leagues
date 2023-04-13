@@ -26,7 +26,6 @@ function TeamsList({ viewModel, model }) {
   }
 
   function handleSort(sortCol) {
-    console.log(sortCol + " " + model.sortCol + " " + model.sortDir);
     let currentDirection = model.sortDir;
 
     if (model.sortCol === sortCol) {
