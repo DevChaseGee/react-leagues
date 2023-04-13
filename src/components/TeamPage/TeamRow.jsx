@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/Button";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import Popover from "react-bootstrap/Popover";
 import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
