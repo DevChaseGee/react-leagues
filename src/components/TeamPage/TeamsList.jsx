@@ -22,7 +22,6 @@ function TeamsList({ viewModel, model }) {
   }
 
   function handleHideAlert() {
-    console.log("I was ran!");
     setShow(false);
   }
 
