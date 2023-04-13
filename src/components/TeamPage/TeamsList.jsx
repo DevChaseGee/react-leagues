@@ -55,7 +55,7 @@ function TeamsList({ viewModel, model }) {
       </div>
       <div className="row">
         <div className="col text-center my-3">
-          {show && <DeleteAlert onHandleHideAlert={handleHideAlert} />}
+          <DeleteAlert show={show} onHandleHideAlert={handleHideAlert} />
         </div>
       </div>
       <div className="row">

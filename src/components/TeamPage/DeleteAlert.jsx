@@ -1,9 +1,9 @@
 import React from "react";
 import Alert from "react-bootstrap/Alert";
 
-function DeleteAlert({ onHandleHideAlert }) {
+function DeleteAlert({show, onHandleHideAlert }) {
   return (
-    <Alert variant="success" onClose={onHandleHideAlert} dismissible>
+    <Alert variant="success" show={show} onClose={onHandleHideAlert} dismissible>
       <Alert.Heading>Team was successfully deleted!</Alert.Heading>
     </Alert>
   );
