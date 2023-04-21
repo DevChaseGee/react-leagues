@@ -22,12 +22,10 @@ function TeamsList({ viewModel, model }) {
   }
 
   function handleHideAlert() {
-    console.log("I was ran!");
     setShow(false);
   }
 
   function handleSort(sortCol) {
-    console.log(sortCol + " " + model.sortCol + " " + model.sortDir);
     let currentDirection = model.sortDir;
 
     if (model.sortCol === sortCol) {
@@ -57,7 +55,7 @@ function TeamsList({ viewModel, model }) {
       </div>
       <div className="row">
         <div className="col text-center my-3">
-          {show && <DeleteAlert onHandleHideAlert={handleHideAlert} />}
+          <DeleteAlert show={show} onHandleHideAlert={handleHideAlert} />
         </div>
       </div>
       <div className="row">

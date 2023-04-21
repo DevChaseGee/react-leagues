@@ -10,6 +10,7 @@ function SearchBar({ title, filterText, onFilterTextChange }) {
           className="me-3 w-100"
           placeholder="Search..."
           type="text"
+          value={filterText}
           onChange={(e) => {
             onFilterTextChange(e.target.value);
           }}
