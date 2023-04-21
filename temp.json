@@ -1,0 +1,24 @@
+{
+    "id": 1,
+    "first_name": "PVPX",
+    "last_name": "Apex",
+    "address1": "124 S 380 E",
+    "address2": "Apt 2",
+    "notes": "Previous pro player",
+    "city": "Long Beach",
+    "state": "CA",
+    "zip": "23495",
+    "team_id": 1,
+    "email": "pvpx@cloud9.com",
+    "phone": "503-234-9556",
+    "password": "mysecretpassword",
+    "user_name": "pvpxapex",
+    "person_type": "coach"
+}
+
+{
+    "id": 1,
+    "name": "Cloud9",
+    "coach_id": 6,
+    "motto": "We are the best!"
+}
