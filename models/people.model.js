@@ -69,17 +69,55 @@ Person.findByEmail = (email, result) => {
   });
 };
 
-Person.getAll = (result) => {
-  sql.query("SELECT * FROM people", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+Person.getAll = (params, result) => {
+  if (!params.sortCol) {
+    sql.query("SELECT * FROM people", (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    console.log("people: ", res);
-    result(null, res);
-  });
+      console.log("people: ", res);
+      result(null, res);
+    });
+  } else {
+    if (params.filterCol && params.filterStr) {
+      sql.query(
+        `SELECT * FROM people WHERE ${params.filterCol} = "${
+          params.filterStr
+        }" ORDER BY ${params.sortCol}${
+          params.sortDir === "desc" ? " DESC" : ""
+        } LIMIT ${params.limit} OFFSET ${params.offset}`,
+        (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+          }
+
+          console.log("people: ", res);
+          result(null, res);
+        }
+      );
+    } else {
+      sql.query(
+        `SELECT * FROM people ORDER BY ${params.sortCol}${
+          params.sortDir === "desc" ? " DESC" : ""
+        } LIMIT ${params.limit} OFFSET ${params.offset}`,
+        (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+          }
+
+          console.log("people: ", res);
+          result(null, res);
+        }
+      );
+    }
+  }
 };
 
 Person.updateById = (id, person, result) => {

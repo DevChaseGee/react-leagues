@@ -1,14 +1,20 @@
 class RestStorageService {
-  constructor(options = {}, host = "http://localhost:8080/api") {
-    this.options = options;
+  constructor(host = "http://localhost:8080/api") {
     this.host = host;
   }
 
-  async list(table) {
-    const response = await fetch(`${this.host}/${table}`);
-    const data = await response.json();
+  async list(table, queryParameters = null) {
+    if (queryParameters) {
+      const response = await fetch(`${this.host}/${table}/${queryParameters}`);
+      const data = await response.json();
 
-    return data;
+      return data;
+    } else {
+      const response = await fetch(`${this.host}/${table}`);
+      const data = await response.json();
+
+      return data;
+    }
   }
 
   async get(table, id) {

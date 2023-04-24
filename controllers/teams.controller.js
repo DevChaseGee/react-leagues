@@ -35,7 +35,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Teams from the database.
 exports.findAll = (req, res) => {
-  Teams.getAll((err, data) => {
+  Teams.getAll(req.query, (err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving teams.",
@@ -46,6 +46,11 @@ exports.findAll = (req, res) => {
 
 // Find a single Team with a teamId
 exports.findOne = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   Teams.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -63,6 +68,11 @@ exports.findOne = (req, res) => {
 
 // Update a Team identified by the teamId in the request
 exports.update = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   // Validate Request
   if (!req.body) {
     res.status(400).send({
@@ -87,6 +97,11 @@ exports.update = (req, res) => {
 
 // Delete a Team with the specified teamId in the request
 exports.delete = (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   Teams.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {

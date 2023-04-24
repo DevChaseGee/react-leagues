@@ -4,22 +4,26 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   // Create a new Person
-  router.post("/people/", people.create);
+  router.post("/people/", people.validate("createPerson"), people.create);
 
   // Retrieve all People
   router.get("/people/", people.findAll);
 
   // Retrieve a single Person with id
-  router.get("/people/:id", people.findOne);
+  router.get("/people/:id", people.validate("findPerson"), people.findOne);
 
   // Retrieve a single Person with email
-  router.get("/people/email/:email", people.findByEmail);
+  router.get(
+    "/people/email/:email",
+    people.validate("findPersonByEmail"),
+    people.findByEmail
+  );
 
   // Update a Person with id
-  router.put("/people/:id", people.update);
+  router.put("/people/:id", people.validate("updatePerson"), people.update);
 
   // Delete a Person with id
-  router.delete("/people/:id", people.delete);
+  router.delete("/people/:id", people.validate("deletePerson"), people.delete);
 
   // Clear all the People
   router.delete("/people/", people.clear);

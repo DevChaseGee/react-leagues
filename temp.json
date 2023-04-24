@@ -22,3 +22,7 @@
     "coach_id": 6,
     "motto": "We are the best!"
 }
+
+http://localhost:8080/api/people/?sortCol=first_name&sortDir=asc&limit=20&offset=0&filterCol=first_name&filterStr=Chris
+
+http://localhost:8080/api/teams/?sortCol=name&sortDir=desc&limit=20&offset=0

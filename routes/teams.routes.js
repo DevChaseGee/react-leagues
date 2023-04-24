@@ -10,13 +10,13 @@ module.exports = (app) => {
   router.get("/teams/", teams.findAll);
 
   // Retrieve a single Team with id
-  router.get("/teams/:id", teams.findOne);
+  router.get("/teams/:id", teams.validate("findTeam"), teams.findOne);
 
   // Update a Team with id
-  router.put("/teams/:id", teams.update);
+  router.put("/teams/:id", teams.validate("updateTeam"), teams.update);
 
   // Delete a Team with id
-  router.delete("/teams/:id", teams.delete);
+  router.delete("/teams/:id", teams.validate("deleteTeam"), teams.delete);
 
   // Clear all the Teams
   router.delete("/teams/", teams.clear);

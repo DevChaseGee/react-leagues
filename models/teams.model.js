@@ -10,15 +10,38 @@ const Team = function (team) {
 };
 
 Team.create = (newTeam, result) => {
-  sql.query("INSERT INTO teams SET ?", newTeam, (err, res) => {
+  // Insert a new team into the teams table don't allow duplicate teams
+  sql.query("SELECT * FROM teams WHERE name = ?", newTeam.name, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
+    if (res.length) {
+      console.log("duplicate team found! ", res[0]);
+      result("duplicate team found!", res[0]);
+      return;
+    } else {
+      sql.query("INSERT INTO teams SET ?", newTeam, (err, insertResult) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
 
-    console.log("created team: ", { id: res.insertId, ...newTeam });
-    result(null, { id: res.insertId, ...newTeam });
+        let prettyResult = {
+          id: insertResult.insertId,
+          name: newTeam.name,
+          coach_id: newTeam.coach_id,
+          motto: newTeam.motto,
+        };
+
+        console.log("created team: ", prettyResult);
+
+        result(null, prettyResult);
+        return;
+      });
+    }
   });
 };
 
@@ -41,17 +64,59 @@ Team.findById = (teamId, result) => {
   });
 };
 
-Team.getAll = (result) => {
-  sql.query("SELECT * FROM teams", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+Team.getAll = (params, result) => {
+  console.log("params: ", params);
+  if (!params.sortCol) {
+    console.log("NO PARAMS");
+    sql.query("SELECT * FROM teams", (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    console.log("teams: ", res);
-    result(null, res);
-  });
+      console.log("teams: ", res);
+      result(null, res);
+    });
+  } else {
+    if (params.filterCol && params.filterStr) {
+      console.log("FILTER PARAMS");
+      sql.query(
+        `SELECT * FROM teams WHERE ${params.filterCol} = "${
+          params.filterStr
+        }" ORDER BY ${params.sortCol}${
+          params.sortDir === "desc" ? " DESC" : ""
+        } LIMIT ${params.limit} OFFSET ${params.offset}`,
+        (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+          }
+
+          console.log("teams: ", res);
+          result(null, res);
+        }
+      );
+    } else {
+      console.log("SORT PARAMS");
+      sql.query(
+        `SELECT * FROM teams ORDER BY ${params.sortCol}${
+          params.sortDir === "desc" ? " DESC" : ""
+        } LIMIT ${params.limit} OFFSET ${params.offset}`,
+        (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+          }
+
+          console.log("teams: ", res);
+          result(null, res);
+        }
+      );
+    }
+  }
 };
 
 Team.updateById = (id, team, result) => {

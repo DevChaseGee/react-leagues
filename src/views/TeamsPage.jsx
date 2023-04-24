@@ -24,8 +24,27 @@ function TeamsPage() {
     { key: "actions", label: "Actions" },
   ];
 
+  const [sortCol, setSortCol] = useState("name");
+  const [sortDir, setSortDir] = useState("asc");
+  const [filterText, setFilterText] = useState("");
   const [teams, setTeams] = useState([]);
   const [show, setShow] = useState(false);
+
+  function onHandleFilter(value) {
+    setFilterText(value);
+  }
+
+  function onHandleSort(newSortCol) {
+    let currentDirection = sortDir;
+
+    if (sortCol === newSortCol) {
+      setSortDir(currentDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortDir("asc");
+    }
+
+    setSortCol(newSortCol);
+  }
 
   function onHandleDelete(id) {
     let restStorage = new RestStorageService();
@@ -42,7 +61,19 @@ function TeamsPage() {
     let restStorage = new RestStorageService();
 
     async function getTeams() {
-      let myList = await restStorage.list("teams");
+      let myList;
+
+      if (filterText === "") {
+        myList = await restStorage.list(
+          "teams",
+          `?sortCol=${sortCol}&sortDir=${sortDir}&limit=10&offset=0`
+        );
+      } else {
+        myList = await restStorage.list(
+          "teams",
+          `?sortCol=${sortCol}&sortDir=${sortDir}&filterCol=name&filterStr=${filterText}&limit=10&offset=0`
+        );
+      }
 
       let formattedTeams = [];
       for (let team of myList) {
@@ -74,16 +105,25 @@ function TeamsPage() {
     }
 
     getTeams();
-  }, []);
+  }, [sortCol, sortDir, filterText, show]);
 
   return (
     <div id="team" className="col-12 mh-100">
       <div className="container-fluid">
         <div className="row">
           <TeamsAside />
-          <TeamsList viewModel={AppViewModel} model={localStorage} />
+          {/* <TeamsList viewModel={AppViewModel} model={localStorage} /> */}
           <DeleteAlert show={show} onHandleHideAlert={onHandleAlert} />
-          <Table viewModel={AppViewModel} columns={columns} rows={teams} />
+          <Table
+            viewModel={AppViewModel}
+            columns={columns}
+            rows={teams}
+            sortCol={sortCol}
+            sortDir={sortDir}
+            filterText={filterText}
+            onHandleFilter={onHandleFilter}
+            onHandleSort={onHandleSort}
+          />
         </div>
         <div className="row-buttons">
           <Button className="m-2 add-btn" variant="success" href="/add-team">
