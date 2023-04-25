@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+DISCLAIMER
+[This Project was done as an assignment and as such some things were implemented in odd ways to enforce learning something specific. This is why common ways to do things like using Axios or Sequelize were not used in this project.]
+
 ## Available Scripts
 
 In the project directory, you can run:
