@@ -28,6 +28,7 @@ function Table({
           <tr>
             {columns.map((column) => (
               <TeamHeaderCol
+                key={column.key}
                 label={column.label}
                 colName={column.key}
                 sortCol={sortCol}

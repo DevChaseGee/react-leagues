@@ -1,6 +1,5 @@
 import LocalStorageService from "../services/local_storage_service.js";
 import TeamsAside from "../components/TeamPage/TeamsAside.jsx";
-import TeamsList from "../components/TeamPage/TeamsList.jsx";
 import AppViewModel from "../services/appViewModel.meta.js";
 import RestStorageService from "../services/rest_storage_service.js";
 import Table from "../components/Utilities/Table.jsx";
@@ -9,13 +8,9 @@ import { FaEdit } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 import DeleteButton from "../components/TeamPage/DeleteButton.jsx";
 import DeleteAlert from "../components/TeamPage/DeleteAlert.jsx";
+import { Link } from "react-router-dom";
 
 function TeamsPage() {
-  let localStorage = new LocalStorageService(
-    AppViewModel.data,
-    AppViewModel.list.entity
-  );
-
   let columns = [
     { key: "name", label: "Name" },
     { key: "coachName", label: "Coach Name" },
@@ -83,9 +78,12 @@ function TeamsPage() {
         team.coachEmail = coach.email;
         team.actions = (
           <div>
-            <Button id={team.id} className="m-2" variant="primary">
-              <FaEdit />
-            </Button>
+            <Link to={`/edit-team/${team.id}`}>
+              <Button id={team.id} className="m-2" variant="primary">
+                <FaEdit />
+              </Button>
+            </Link>
+
             <DeleteButton
               bodyText={"Are you sure you want to delete this team?"}
               noText="No"
